@@ -1,0 +1,54 @@
+# Max Area of Island
+# Solved 
+# You are given a matrix grid where grid[i] is either a 0 (representing water) or 1 (representing land).
+
+# An island is defined as a group of 1's connected horizontally or vertically. You may assume all four edges of the grid are surrounded by water.
+
+# The area of an island is defined as the number of cells within the island.
+
+# Return the maximum area of an island in grid. If no island exists, return 0.
+
+# Example 1:
+
+
+
+# Input: grid = [
+#   [0,1,1,0,1],
+#   [1,0,1,0,1],
+#   [0,1,1,0,1],
+#   [0,1,0,0,1]
+# ]
+
+# Output: 6
+
+class Solution:
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        
+        rows,cols = len(grid),len(grid[0])
+        directions = [[1,0],[0,1],[-1,0],[0,-1]]
+        max_area = 0
+
+        def bfs(r,c):
+            q=deque()
+            q.append((r,c))
+            local_area=1
+            grid[r][c]=0
+
+            while q:
+                row,col = q.popleft()
+                for dr,dc in directions:
+                    cur_row, cur_col = row+dr, col+dc
+                    if (cur_row<0 or cur_col<0 or cur_row>=rows or cur_col>=cols or grid[cur_row][cur_col]==0):
+                        continue
+                    local_area+=1
+                    grid[cur_row][cur_col]=0
+                    q.append((cur_row,cur_col)) #if 1 append it so you can bfs on next layer
+            
+            return local_area
+
+        for r in range(rows):
+            for c in range(cols):
+                if grid[r][c]==1:
+                    max_area = max(max_area,bfs(r,c))
+
+        return max_area
