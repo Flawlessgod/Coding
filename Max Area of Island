@@ -1,5 +1,4 @@
 # Max Area of Island
-# Solved 
 # You are given a matrix grid where grid[i] is either a 0 (representing water) or 1 (representing land).
 
 # An island is defined as a group of 1's connected horizontally or vertically. You may assume all four edges of the grid are surrounded by water.
