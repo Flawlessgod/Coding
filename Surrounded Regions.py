@@ -35,7 +35,7 @@ class Solution:
             board[r][c] = "T"
             for dr,dc in directions:
                 nr,nc = r+dr, c+dc
-                dfs(r,c)
+                dfs(nr,nc)
         
         # 1 capture unsurrounded regrions and convert to temprorary variable
         # unsurrounded are by definition connected to edge of grid either directely or through adjacency 
